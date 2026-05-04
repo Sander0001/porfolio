@@ -1,321 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alexander Terziev Salazar — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap');
-
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-.port {
-  font-family: 'Syne', sans-serif;
-  color: var(--color-text-primary);
-  max-width: 780px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem 4rem;
-}
-
-.hero {
-  border: 0.5px solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  padding: 2.5rem 2rem 2rem;
-  margin-bottom: 2rem;
-  position: relative;
-  overflow: hidden;
-  background: var(--color-background-primary);
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -40px; right: -40px;
-  width: 200px; height: 200px;
-  border-radius: 50%;
-  border: 40px solid var(--color-border-tertiary);
-  opacity: 0.4;
-}
-
-.hero-tag {
-  display: inline-block;
-  font-family: 'Space Mono', monospace;
-  font-size: 11px;
-  background: var(--color-background-secondary);
-  border: 0.5px solid var(--color-border-secondary);
-  border-radius: 4px;
-  padding: 3px 8px;
-  color: var(--color-text-secondary);
-  margin-bottom: 1rem;
-  letter-spacing: 0.05em;
-}
-
-.hero-name {
-  font-size: clamp(28px, 5vw, 46px);
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  margin-bottom: 0.75rem;
-}
-
-.hero-name span {
-  color: #185FA5;
-}
-
-.hero-desc {
-  font-size: 15px;
-  color: var(--color-text-secondary);
-  line-height: 1.7;
-  max-width: 500px;
-  font-weight: 400;
-}
-
-.hero-dots {
-  display: flex;
-  gap: 8px;
-  margin-top: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.dot-chip {
-  font-size: 12px;
-  font-family: 'Space Mono', monospace;
-  padding: 4px 10px;
-  border-radius: 20px;
-  border: 0.5px solid var(--color-border-secondary);
-  color: var(--color-text-secondary);
-  background: var(--color-background-secondary);
-}
-
-.section-label {
-  font-family: 'Space Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-text-tertiary);
-  margin-bottom: 0.75rem;
-  margin-top: 2rem;
-}
-
-.grid-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-
-.card {
-  background: var(--color-background-primary);
-  border: 0.5px solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  padding: 1.25rem;
-}
-
-.card-title {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--color-text-secondary);
-  font-family: 'Space Mono', monospace;
-  margin-bottom: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.skill-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.skill-pill {
-  font-size: 13px;
-  font-weight: 500;
-  padding: 5px 12px;
-  border-radius: 20px;
-  border: 0.5px solid var(--color-border-secondary);
-  color: var(--color-text-primary);
-  background: var(--color-background-secondary);
-  font-family: 'Syne', sans-serif;
-}
-
-.tech-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-.tech-chip {
-  background: var(--color-background-secondary);
-  border: 0.5px solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-md);
-  padding: 10px 8px;
-  text-align: center;
-  font-size: 12px;
-  font-family: 'Space Mono', monospace;
-  color: var(--color-text-secondary);
-  font-weight: 700;
-}
-
-.tech-icon {
-  display: block;
-  font-size: 16px;
-  margin-bottom: 4px;
-}
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-
-.proj-card {
-  background: var(--color-background-primary);
-  border: 0.5px solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  padding: 1.1rem 1.25rem;
-  cursor: pointer;
-  transition: border-color 0.15s;
-}
-
-.proj-card:hover {
-  border-color: var(--color-border-primary);
-}
-
-.proj-type {
-  font-family: 'Space Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #185FA5;
-  margin-bottom: 6px;
-}
-
-.proj-name {
-  font-size: 14px;
-  font-weight: 700;
-  margin-bottom: 4px;
-  line-height: 1.3;
-}
-
-.proj-desc {
-  font-size: 12px;
-  color: var(--color-text-secondary);
-  line-height: 1.5;
-}
-
-.exp-bar {
-  background: var(--color-background-secondary);
-  border: 0.5px solid var(--color-border-tertiary);
-  border-radius: var(--border-radius-lg);
-  padding: 1.25rem;
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  margin-bottom: 12px;
-}
-
-.exp-num {
-  font-size: 42px;
-  font-weight: 800;
-  color: #185FA5;
-  line-height: 1;
-  font-family: 'Syne', sans-serif;
-  flex-shrink: 0;
-}
-
-.exp-text {
-  font-size: 14px;
-  color: var(--color-text-secondary);
-  line-height: 1.6;
-}
-
-.exp-text strong {
-  color: var(--color-text-primary);
-  font-weight: 700;
-}
-
-@media (max-width: 520px) {
-  .grid-2, .projects-grid { grid-template-columns: 1fr; }
-  .tech-grid { grid-template-columns: repeat(4, 1fr); }
-}
-</style>
-
-<div class="port">
-
-  <div class="hero">
-    <div class="hero-tag">CFGM SMX · 2º Año · Barcelona</div>
-    <h1 class="hero-name">Alexander<br><span>Terziev</span> Salazar</h1>
-    <p class="hero-desc">Apasionado de la programación, el modelado 3D y la realidad virtual. Creo soluciones desde infraestructuras de red hasta videojuegos y sistemas con Arduino.</p>
-    <div class="hero-dots">
-      <span class="dot-chip">// Programación</span>
-      <span class="dot-chip">// Modelado 3D</span>
-      <span class="dot-chip">// Realidad Virtual</span>
-      <span class="dot-chip">// Redes</span>
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <span>ATS</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#experiencia">experiencia</a></li>
+        <li><a href="#proyectos">proyectos</a></li>
+        <li><a href="#habilidades">habilidades</a></li>
+        <li><a href="#tecnologias">tecnologías</a></li>
+      </ul>
+      <div class="nav-location">
+        <span class="dot"></span> Barcelona, ES
+      </div>
     </div>
-  </div>
+  </nav>
 
-  <div class="section-label">Experiencia</div>
-  <div class="exp-bar">
-    <div class="exp-num">8+</div>
-    <div class="exp-text"><strong>Proyectos realizados en clase</strong> y prácticas en empresa. Experiencia real desarrollando soluciones de hardware, software y redes desde cero.</div>
-  </div>
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-inner">
 
-  <div class="section-label">Habilidades blandas</div>
-  <div class="card" style="margin-bottom: 12px;">
-    <div class="skill-list">
-      <span class="skill-pill">Trabajo en equipo</span>
-      <span class="skill-pill">Creatividad</span>
-      <span class="skill-pill">Personalidad fuerte</span>
-      <span class="skill-pill">Resolución de problemas</span>
-    </div>
-  </div>
+      <!-- COLUMNA IZQUIERDA -->
+      <div class="hero-left">
+        <p class="hero-kicker">// hardware &amp; redes</p>
+        <h1 class="hero-title-left">maker</h1>
+        <p class="hero-desc-left">
+          Arduino, pfSense, Linux, infraestructuras de red. Construyo cosas que existen en el mundo físico.
+        </p>
+      </div>
 
-  <div class="section-label">Tecnologías</div>
-  <div class="tech-grid">
-    <div class="tech-chip"><span class="tech-icon">⚡</span>Arduino</div>
-    <div class="tech-chip"><span class="tech-icon">🐧</span>Linux</div>
-    <div class="tech-chip"><span class="tech-icon">🌐</span>HTML</div>
-    <div class="tech-chip"><span class="tech-icon">🎨</span>CSS</div>
-    <div class="tech-chip"><span class="tech-icon">🎮</span>Unity</div>
-    <div class="tech-chip"><span class="tech-icon">🖥</span>Win Server</div>
-    <div class="tech-chip"><span class="tech-icon">🐋</span>Ubuntu</div>
-    <div class="tech-chip"><span class="tech-icon">🔥</span>pfSense</div>
-  </div>
+      <!-- CENTRO: nombre + foto -->
+      <div class="hero-center">
+        <div class="hero-photo-wrap">
+          <div class="hero-photo-bg"></div>
+          <div class="hero-initials">
+            <span class="initial-big">A</span>
+            <span class="initial-line"></span>
+            <span class="initial-big">T</span>
+          </div>
+        </div>
+        <div class="hero-name-block">
+          <span class="hero-firstname">Alexander</span>
+          <span class="hero-lastname">Terziev<span class="hero-surname-sm"> Salazar</span></span>
+        </div>
+        <div class="hero-chips">
+          <span class="chip">CFGM SMX</span>
+          <span class="chip">2º Año</span>
+          <span class="chip">Barcelona</span>
+        </div>
+      </div>
 
-  <div class="section-label">Proyectos</div>
-  <div class="projects-grid">
-    <div class="proj-card">
-      <div class="proj-type">Hardware · Arduino</div>
-      <div class="proj-name">Sistema de entrada con Arduino</div>
-      <div class="proj-desc">Control de acceso físico montado y programado íntegramente desde cero.</div>
-    </div>
-    <div class="proj-card">
-      <div class="proj-type">Hardware · Arduino</div>
-      <div class="proj-name">Sistema de contraseña con teclado</div>
-      <div class="proj-desc">Teclado físico con lógica de autenticación programada en Arduino.</div>
-    </div>
-    <div class="proj-card">
-      <div class="proj-type">Web · HTML & CSS</div>
-      <div class="proj-name">Web de averías</div>
-      <div class="proj-desc">Plataforma web para registro y gestión de averías, diseñada a mano.</div>
-    </div>
-    <div class="proj-card">
-      <div class="proj-type">Web · HTML & CSS</div>
-      <div class="proj-name">Tienda de ropa online</div>
-      <div class="proj-desc">Ecommerce con sistema de usuarios, carrito funcional y catálogo.</div>
-    </div>
-    <div class="proj-card">
-      <div class="proj-type">Web · HTML & CSS</div>
-      <div class="proj-name">Web empresa de climatología</div>
-      <div class="proj-desc">Sitio corporativo para empresa del sector climatológico.</div>
-    </div>
-    <div class="proj-card">
-      <div class="proj-type">Videojuego · Unity</div>
-      <div class="proj-name">Videojuego tipo Mario Kart</div>
-      <div class="proj-desc">Juego de carreras multijugador programado en Unity con assets externos.</div>
-    </div>
-    <div class="proj-card">
-      <div class="proj-type">Videojuego · Unity</div>
-      <div class="proj-name">Simulador de coche realista</div>
-      <div class="proj-desc">Videojuego de conducción con física realista, desarrollado en Unity.</div>
-    </div>
-  </div>
+      <!-- COLUMNA DERECHA -->
+      <div class="hero-right">
+        <p class="hero-kicker right">&lt;coder /&gt;</p>
+        <h1 class="hero-title-right">dev</h1>
+        <p class="hero-desc-right">
+          HTML, CSS, Unity, modelado 3D y realidad virtual. El código que da vida a ideas.
+        </p>
+      </div>
 
-</div>
+    </div>
+
+    <!-- TICKER -->
+    <div class="ticker-wrap">
+      <div class="ticker">
+        <span>Arduino</span><span class="sep">·</span>
+        <span>Unity</span><span class="sep">·</span>
+        <span>Linux</span><span class="sep">·</span>
+        <span>HTML &amp; CSS</span><span class="sep">·</span>
+        <span>pfSense</span><span class="sep">·</span>
+        <span>Modelado 3D</span><span class="sep">·</span>
+        <span>Realidad Virtual</span><span class="sep">·</span>
+        <span>Win Server</span><span class="sep">·</span>
+        <span>Arduino</span><span class="sep">·</span>
+        <span>Unity</span><span class="sep">·</span>
+        <span>Linux</span><span class="sep">·</span>
+        <span>HTML &amp; CSS</span><span class="sep">·</span>
+        <span>pfSense</span><span class="sep">·</span>
+        <span>Modelado 3D</span><span class="sep">·</span>
+        <span>Realidad Virtual</span><span class="sep">·</span>
+        <span>Win Server</span><span class="sep">·</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCIA -->
+  <section id="experiencia">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">// 01 — Experiencia</p>
+      </div>
+      <div class="exp-grid">
+        <div class="exp-card">
+          <div class="exp-num">8<span class="exp-plus">+</span></div>
+          <div class="exp-text">Proyectos realizados en clase</div>
+        </div>
+        <div class="exp-card">
+          <div class="exp-num">1</div>
+          <div class="exp-text">Prácticas en empresa</div>
+        </div>
+        <div class="exp-card">
+          <div class="exp-num">2</div>
+          <div class="exp-text">Años formándome en SMX</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROYECTOS -->
+  <section id="proyectos">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">// 02 — Proyectos</p>
+        <p class="section-count">07 trabajos</p>
+      </div>
+      <div class="proj-grid">
+
+        <div class="proj-card">
+          <div class="proj-img proj-img--hardware"></div>
+          <div class="proj-body">
+            <p class="proj-type">Hardware · Arduino</p>
+            <h3 class="proj-name">Sistema de entrada</h3>
+            <p class="proj-desc">Control de acceso físico montado y programado íntegramente desde cero con Arduino.</p>
+            <div class="proj-arrow">→</div>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-img proj-img--arduino2"></div>
+          <div class="proj-body">
+            <p class="proj-type">Hardware · Arduino</p>
+            <h3 class="proj-name">Contraseña con teclado</h3>
+            <p class="proj-desc">Teclado físico con lógica de autenticación programada en Arduino.</p>
+            <div class="proj-arrow">→</div>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-img proj-img--web1"></div>
+          <div class="proj-body">
+            <p class="proj-type">Web · HTML &amp; CSS</p>
+            <h3 class="proj-name">Web de averías</h3>
+            <p class="proj-desc">Plataforma web para registro y gestión de averías, diseñada y programada a mano.</p>
+            <div class="proj-arrow">→</div>
+          </div>
+        </div>
+
+        <div class="proj-card proj-card--featured">
+          <div class="proj-img proj-img--web2"></div>
+          <div class="proj-body">
+            <p class="proj-type">Web · HTML &amp; CSS</p>
+            <h3 class="proj-name">Tienda de ropa online</h3>
+            <p class="proj-desc">Ecommerce con sistema de usuarios, carrito funcional y catálogo de productos.</p>
+            <div class="proj-arrow">→</div>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-img proj-img--web3"></div>
+          <div class="proj-body">
+            <p class="proj-type">Web · HTML &amp; CSS</p>
+            <h3 class="proj-name">Web empresa de climatología</h3>
+            <p class="proj-desc">Sitio corporativo completo para empresa del sector climatológico.</p>
+            <div class="proj-arrow">→</div>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-img proj-img--unity1"></div>
+          <div class="proj-body">
+            <p class="proj-type">Videojuego · Unity</p>
+            <h3 class="proj-name">Videojuego tipo Mario Kart</h3>
+            <p class="proj-desc">Juego de carreras multijugador programado en Unity con assets externos.</p>
+            <div class="proj-arrow">→</div>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-img proj-img--unity2"></div>
+          <div class="proj-body">
+            <p class="proj-type">Videojuego · Unity</p>
+            <h3 class="proj-name">Simulador de coche realista</h3>
+            <p class="proj-desc">Videojuego de conducción con física realista, desarrollado completamente en Unity.</p>
+            <div class="proj-arrow">→</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HABILIDADES -->
+  <section id="habilidades">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">// 03 — Habilidades</p>
+      </div>
+      <div class="skills-list">
+        <span class="skill-pill">Trabajo en equipo</span>
+        <span class="skill-pill">Creatividad</span>
+        <span class="skill-pill">Personalidad</span>
+        <span class="skill-pill">Resolución de problemas</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECNOLOGÍAS -->
+  <section id="tecnologias">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">// 04 — Tecnologías</p>
+      </div>
+      <div class="tech-grid">
+        <div class="tech-card">
+          <span class="tech-icon">⚡</span>
+          <span class="tech-name">Arduino</span>
+        </div>
+        <div class="tech-card">
+          <span class="tech-icon">🐧</span>
+          <span class="tech-name">Linux</span>
+        </div>
+        <div class="tech-card">
+          <span class="tech-icon">🌐</span>
+          <span class="tech-name">HTML</span>
+        </div>
+        <div class="tech-card">
+          <span class="tech-icon">🎨</span>
+          <span class="tech-name">CSS</span>
+        </div>
+        <div class="tech-card">
+          <span class="tech-icon">🎮</span>
+          <span class="tech-name">Unity</span>
+        </div>
+        <div class="tech-card">
+          <span class="tech-icon">🖥️</span>
+          <span class="tech-name">Win Server</span>
+        </div>
+        <div class="tech-card">
+          <span class="tech-icon">🐋</span>
+          <span class="tech-name">Ubuntu</span>
+        </div>
+        <div class="tech-card">
+          <span class="tech-icon">🔥</span>
+          <span class="tech-name">pfSense</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+      <p class="footer-name">Alexander Terziev Salazar</p>
+      <p class="footer-sub">CFGM SMX · Barcelona · 2025</p>
+    </div>
+  </footer>
+
+</body>
+</html>
