@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proyecto — Alexander Terziev Salazar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f2ee;
+      --cream: #f0ece5;
+      --accent: #e8370a;
+      --gray: #888;
+      --border: rgba(0,0,0,0.1);
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-serif: 'DM Serif Display', serif;
+      --font-mono: 'DM Mono', monospace;
+      --font-body: 'Outfit', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--black);
+      overflow-x: hidden;
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      background: var(--black);
+      padding: 0.9rem 0;
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      width: 36px; height: 36px;
+      border: 1.5px solid var(--white);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      font-family: var(--font-mono);
+      font-size: 9px; font-weight: 500;
+      color: var(--white); letter-spacing: 0.08em;
+    }
+
+    .nav-back {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      display: flex; align-items: center; gap: 8px;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--white); }
+    .nav-back::before { content: '←'; font-size: 14px; }
+
+    .nav-index {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.08em;
+    }
+
+    /* ===== HERO CABECERA ===== */
+    .proj-header {
+      padding-top: 80px;
+      background: var(--black);
+      color: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 52vh;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .proj-header-left {
+      padding: 4rem 2.5rem 4rem;
+      max-width: 600px;
+      margin-left: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 1.4rem;
+      animation: fadeUp 0.6s ease both 0.1s;
+    }
+
+    .proj-header-right {
+      padding: 4rem 2.5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      animation: fadeUp 0.6s ease both 0.25s;
+      border-left: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .proj-kicker {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .proj-title {
+      font-family: var(--font-display);
+      font-size: clamp(56px, 7vw, 100px);
+      line-height: 0.88;
+      letter-spacing: 0.02em;
+      color: var(--white);
+    }
+
+    .proj-subtitle {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.3rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.4;
+    }
+
+    .proj-desc-full {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.65);
+      max-width: 420px;
+    }
+
+    /* Meta info right */
+    .proj-meta-top {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      padding-top: 1rem;
+    }
+
+    .meta-block { display: flex; flex-direction: column; gap: 0.4rem; }
+
+    .meta-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .meta-value {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 0.2rem;
+    }
+
+    .tech-tag {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 2px;
+      color: rgba(255,255,255,0.6);
+      background: transparent;
+      transition: all 0.2s;
+    }
+    .tech-tag:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .proj-meta-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 1.5rem;
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    .stat-item { display: flex; flex-direction: column; gap: 0.2rem; }
+
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 40px;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ===== GALERÍA PRINCIPAL ===== */
+    .gallery-section {
+      padding: 0;
+      background: var(--black);
+    }
+
+    /* Imagen hero grande */
+    .gallery-hero {
+      width: 100%;
+      height: 70vh;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .gallery-hero-inner {
+      width: 100%;
+      height: 100%;
+      /* 
+        ============================================================
+        FOTO / VIDEO PRINCIPAL
+        Reemplaza el background-image con tu imagen:
+          background-image: url('tu-foto.jpg');
+        O si prefieres video, descomenta el <video> dentro del HTML.
+        ============================================================
+      */
+      background: linear-gradient(135deg, #1a1a2e 0%, #e94560 100%);
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-hero:hover .gallery-hero-inner { transform: scale(1.02); }
+
+    .gallery-hero-label {
+      position: absolute;
+      bottom: 2rem; left: 2rem;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      background: rgba(0,0,0,0.6);
+      padding: 6px 14px;
+      border-radius: 2px;
+      backdrop-filter: blur(4px);
+    }
+
+    .gallery-hero-num {
+      position: absolute;
+      top: 2rem; right: 2rem;
+      font-family: var(--font-display);
+      font-size: 80px;
+      color: rgba(255,255,255,0.06);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* Expand icon */
+    .expand-icon {
+      position: absolute;
+      bottom: 2rem; right: 2rem;
+      width: 44px; height: 44px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      color: rgba(255,255,255,0.6);
+      transition: all 0.2s;
+      backdrop-filter: blur(4px);
+      background: rgba(0,0,0,0.3);
+    }
+    .gallery-hero:hover .expand-icon {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ===== GRID DE MEDIOS ===== */
+    .media-section {
+      padding: 4rem 0;
+      background: var(--black);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .media-section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+    }
+
+    .media-section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+
+    .media-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .media-count {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: rgba(255,255,255,0.15);
+    }
+
+    /* Grid de 3 columnas con variación de tamaños */
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .media-item {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+
+    .media-item--tall { grid-row: span 2; }
+    .media-item--wide { grid-column: span 2; }
+
+    .media-thumb {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .media-item--tall .media-thumb { height: 100%; min-height: 448px; }
+    .media-item--wide .media-thumb { height: 220px; }
+
+    /* Placeholder cuando no hay imagen real */
+    .media-placeholder {
+      width: 100%;
+      height: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .media-item--tall .media-placeholder { height: 100%; min-height: 448px; }
+    .media-item--wide .media-placeholder { height: 220px; }
+
+    .media-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 100%);
+    }
+
+    /* Colores de placeholder variados */
+    .ph-1  { background: #111216; border: 1px dashed rgba(255,255,255,0.08); }
+    .ph-2  { background: #12100e; border: 1px dashed rgba(255,255,255,0.08); }
+    .ph-3  { background: #0e1115; border: 1px dashed rgba(255,255,255,0.08); }
+    .ph-4  { background: #111210; border: 1px dashed rgba(255,255,255,0.08); }
+    .ph-5  { background: #100e12; border: 1px dashed rgba(255,255,255,0.08); }
+
+    .media-placeholder-icon {
+      font-size: 32px;
+      opacity: 0.2;
+    }
+
+    .media-placeholder-text {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.18);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .media-item:hover .media-placeholder {
+      border-color: rgba(232,55,10,0.3);
+    }
+    .media-item:hover .media-placeholder-icon { opacity: 0.4; }
+
+    /* Overlay hover */
+    .media-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(232, 55, 10, 0.0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+    }
+
+    .media-item:hover .media-overlay { background: rgba(232, 55, 10, 0.08); }
+
+    .media-overlay-icon {
+      font-size: 24px;
+      color: white;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.3s;
+    }
+    .media-item:hover .media-overlay-icon { opacity: 0.8; transform: scale(1); }
+
+    /* Badge tipo (foto / video) */
+    .media-badge {
+      position: absolute;
+      top: 12px; left: 12px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 2px;
+      color: rgba(255,255,255,0.7);
+    }
+    .media-badge--photo { background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); }
+    .media-badge--video { background: rgba(232,55,10,0.7); border: 1px solid rgba(232,55,10,0.4); }
+
+    /* ===== SECCIÓN VIDEO EMBED ===== */
+    .video-section {
+      padding: 4rem 0;
+      background: #050505;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .video-section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+    }
+
+    .video-section-header {
+      margin-bottom: 2rem;
+    }
+
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 */
+      background: #111;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .video-wrap iframe,
+    .video-wrap video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    /* Placeholder para cuando no hay video */
+    .video-placeholder {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .video-play-btn {
+      width: 72px; height: 72px;
+      border: 2px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .video-placeholder-text {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.15);
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    /* ===== DESCRIPCIÓN LARGA ===== */
+    .details-section {
+      padding: 5rem 0;
+      background: var(--cream);
+      border-top: 1px solid var(--border);
+    }
+
+    .details-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .details-sidebar { position: sticky; top: 100px; }
+
+    .details-sidebar-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 2rem;
+    }
+
+    .sidebar-list { display: flex; flex-direction: column; gap: 1rem; }
+
+    .sidebar-item { display: flex; flex-direction: column; gap: 0.3rem; }
+
+    .sidebar-item-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+
+    .sidebar-item-value {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--black);
+    }
+
+    .details-content { display: flex; flex-direction: column; gap: 2rem; }
+
+    .details-content h2 {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--black);
+      line-height: 1.25;
+    }
+
+    .details-content p {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.85;
+      color: #444;
+      /* 
+        ============================================================
+        TEXTO DEL PROYECTO
+        Edita este texto con la descripción de tu proyecto.
+        ============================================================
+      */
+    }
+
+    .details-content p + p { margin-top: 1rem; }
+
+    /* ===== LIGHTBOX ===== */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(0,0,0,0.96);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .lightbox.active { display: flex; }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem; right: 2rem;
+      font-size: 28px;
+      color: rgba(255,255,255,0.4);
+      cursor: pointer;
+      background: none; border: none;
+      font-family: var(--font-body);
+      transition: color 0.2s;
+      line-height: 1;
+    }
+    .lightbox-close:hover { color: var(--white); }
+
+    .lightbox-img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 3px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--black);
+      padding: 3rem 0;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-name {
+      font-family: var(--font-display);
+      font-size: 22px;
+      letter-spacing: 0.08em;
+      color: var(--white);
+    }
+
+    .footer-sub {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.08em;
+    }
+
+    /* ===== ANIMACIONES ===== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .proj-header {
+        grid-template-columns: 1fr;
+      }
+      .proj-header-left { max-width: 100%; margin: 0; padding: 3rem 1.5rem 2rem; }
+      .proj-header-right { border-left: none; border-top: 1px solid rgba(255,255,255,0.08); padding: 2rem 1.5rem; }
+      .media-grid { grid-template-columns: repeat(2, 1fr); }
+      .media-item--wide { grid-column: span 2; }
+      .details-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .details-sidebar { position: static; }
+    }
+
+    @media (max-width: 600px) {
+      .proj-title { font-size: clamp(48px, 12vw, 80px); }
+      .media-grid { grid-template-columns: 1fr; }
+      .media-item--tall, .media-item--wide { grid-column: span 1; grid-row: span 1; }
+      .media-item--tall .media-placeholder { min-height: 260px; }
+      .footer-inner { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><span>AYTS</span></a>
+      <a href="index.html#proyectos" class="nav-back">Volver a proyectos</a>
+      <span class="nav-index">02 / 07</span>
+    </div>
+  </nav>
+
+  <!-- CABECERA DEL PROYECTO -->
+  <header class="proj-header">
+
+    <div class="proj-header-left">
+      <!-- ============================================================
+           EDITA AQUÍ: kicker, título y subtítulo del proyecto
+           ============================================================ -->
+      <p class="proj-kicker">// Hardware · Arduino</p>
+      <h1 class="proj-title">Sistema de Entrada</h1>
+      <p class="proj-subtitle">Control de acceso físico desde cero</p>
+      <p class="proj-desc-full">
+        Control de acceso físico montado y programado íntegramente desde cero con Arduino. 
+        El sistema integra un lector de tarjetas RFID, teclado matricial y servomotor para 
+        la apertura de puerta, con lógica de autenticación de doble factor.
+      </p>
+    </div>
+
+    <div class="proj-header-right">
+      <div class="proj-meta-top">
+        <!-- ============================================================
+             EDITA AQUÍ: tecnologías, año, tipo
+             ============================================================ -->
+        <div class="meta-block">
+          <span class="meta-label">Tecnologías</span>
+          <div class="tech-tags">
+            <span class="tech-tag">Arduino UNO</span>
+            <span class="tech-tag">C++</span>
+            <span class="tech-tag">RFID</span>
+            <span class="tech-tag">Servo</span>
+            <span class="tech-tag">LCD I2C</span>
+          </div>
+        </div>
+
+        <div class="meta-block">
+          <span class="meta-label">Año</span>
+          <span class="meta-value">2024 — 2025</span>
+        </div>
+
+        <div class="meta-block">
+          <span class="meta-label">Tipo</span>
+          <span class="meta-value">Proyecto de aula — CFGM SMX</span>
+        </div>
+
+        <div class="meta-block">
+          <span class="meta-label">Rol</span>
+          <span class="meta-value">Diseño, montaje y programación</span>
+        </div>
+      </div>
+
+      <div class="proj-meta-bottom">
+        <!-- ============================================================
+             EDITA AQUÍ: estadísticas del proyecto
+             ============================================================ -->
+        <div class="stat-item">
+          <span class="stat-num">3</span>
+          <span class="stat-label">Semanas</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">1</span>
+          <span class="stat-label">Prototipo</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">∞</span>
+          <span class="stat-label">Iteraciones</span>
+        </div>
+      </div>
+    </div>
+
+  </header>
+
+  <!-- IMAGEN HERO GRANDE -->
+  <section class="gallery-section">
+    <div class="gallery-hero" onclick="openLightbox(this)">
+      <div class="gallery-hero-inner"
+           style="
+             /* ============================================================
+                FOTO PRINCIPAL DEL PROYECTO — IMAGEN GRANDE
+                Descomenta la línea siguiente y pon la ruta de tu imagen:
+                background-image: url('fotos/proyecto-portada.jpg');
+                background-size: cover;
+                background-position: center;
+                ============================================================ */
+           ">
+      </div>
+
+      <!-- Si prefieres VIDEO en lugar de imagen, descomenta esto:
+      <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        <source src="videos/demo-principal.mp4" type="video/mp4">
+      </video>
+      -->
+
+      <span class="gallery-hero-num">01</span>
+      <span class="gallery-hero-label">Vista general del proyecto</span>
+      <div class="expand-icon">⊕</div>
+    </div>
+  </section>
+
+  <!-- GRID DE FOTOS Y VIDEOS -->
+  <section class="media-section">
+    <div class="media-section-inner">
+      <div class="media-section-header">
+        <span class="media-label">// Galería de medios</span>
+        <span class="media-count">6 archivos</span>
+      </div>
+
+      <div class="media-grid">
+
+        <!-- ITEM 1 — FOTO TALL (ocupa 2 filas) -->
+        <div class="media-item media-item--tall">
+          <div class="media-overlay"><span class="media-overlay-icon">⊕</span></div>
+          <!--
+            Para poner tu foto, reemplaza el div.media-placeholder por:
+            <img class="media-thumb" src="fotos/foto-1.jpg" alt="descripción" style="height:100%;">
+          -->
+          <div class="media-placeholder ph-1" style="min-height:448px;">
+            <span class="media-placeholder-icon">📷</span>
+            <span class="media-placeholder-text">Foto 1<br>Detalle del circuito</span>
+          </div>
+          <span class="media-badge media-badge--photo">Foto</span>
+        </div>
+
+        <!-- ITEM 2 — FOTO NORMAL -->
+        <div class="media-item" onclick="openLightbox(this)">
+          <div class="media-overlay"><span class="media-overlay-icon">⊕</span></div>
+          <!--
+            <img class="media-thumb" src="fotos/foto-2.jpg" alt="descripción">
+          -->
+          <div class="media-placeholder ph-2">
+            <span class="media-placeholder-icon">📷</span>
+            <span class="media-placeholder-text">Foto 2<br>Montaje completo</span>
+          </div>
+          <span class="media-badge media-badge--photo">Foto</span>
+        </div>
+
+        <!-- ITEM 3 — VIDEO -->
+        <div class="media-item">
+          <div class="media-overlay"><span class="media-overlay-icon">▶</span></div>
+          <!--
+            Para un video corto (gif-like):
+            <video class="media-thumb" autoplay muted loop playsinline src="videos/clip-1.mp4"></video>
+          -->
+          <div class="media-placeholder ph-3">
+            <span class="media-placeholder-icon">🎬</span>
+            <span class="media-placeholder-text">Video 1<br>Demo de funcionamiento</span>
+          </div>
+          <span class="media-badge media-badge--video">Video</span>
+        </div>
+
+        <!-- ITEM 4 — FOTO WIDE (ocupa 2 columnas) -->
+        <div class="media-item media-item--wide" onclick="openLightbox(this)">
+          <div class="media-overlay"><span class="media-overlay-icon">⊕</span></div>
+          <!--
+            <img class="media-thumb" src="fotos/foto-wide.jpg" alt="descripción" style="width:100%;object-fit:cover;">
+          -->
+          <div class="media-placeholder ph-4" style="width:100%;">
+            <span class="media-placeholder-icon">📷</span>
+            <span class="media-placeholder-text">Foto panorámica<br>Vista del entorno</span>
+          </div>
+          <span class="media-badge media-badge--photo">Foto</span>
+        </div>
+
+        <!-- ITEM 5 — FOTO NORMAL -->
+        <div class="media-item" onclick="openLightbox(this)">
+          <div class="media-overlay"><span class="media-overlay-icon">⊕</span></div>
+          <!--
+            <img class="media-thumb" src="fotos/foto-5.jpg" alt="descripción">
+          -->
+          <div class="media-placeholder ph-5">
+            <span class="media-placeholder-icon">📷</span>
+            <span class="media-placeholder-text">Foto 5<br>Detalle conector</span>
+          </div>
+          <span class="media-badge media-badge--photo">Foto</span>
+        </div>
+
+        <!-- ITEM 6 — FOTO NORMAL -->
+        <div class="media-item" onclick="openLightbox(this)">
+          <div class="media-overlay"><span class="media-overlay-icon">⊕</span></div>
+          <!--
+            <img class="media-thumb" src="fotos/foto-6.jpg" alt="descripción">
+          -->
+          <div class="media-placeholder ph-1">
+            <span class="media-placeholder-icon">📷</span>
+            <span class="media-placeholder-text">Foto 6<br>Resultado final</span>
+          </div>
+          <span class="media-badge media-badge--photo">Foto</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN VIDEO EMBED (YouTube / video local) -->
+  <section class="video-section">
+    <div class="video-section-inner">
+      <div class="video-section-header">
+        <span class="media-label" style="color:rgba(255,255,255,0.25);">// Video de demostración</span>
+      </div>
+
+      <div class="video-wrap">
+        <!--
+          OPCIÓN A — YouTube:
+          Descomenta y pega tu URL de YouTube (cambia VIDEO_ID):
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+
+          OPCIÓN B — Video local:
+          <video controls poster="fotos/portada-video.jpg">
+            <source src="videos/demo-completo.mp4" type="video/mp4">
+          </video>
+        -->
+        <div class="video-placeholder">
+          <div class="video-play-btn">▶</div>
+          <p class="video-placeholder-text">
+            Añade aquí tu video de YouTube o un archivo .mp4<br>
+            Consulta los comentarios del HTML para instrucciones
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESCRIPCIÓN DETALLADA -->
+  <section class="details-section">
+    <div class="details-inner">
+
+      <!-- Sidebar info -->
+      <div class="details-sidebar">
+        <p class="details-sidebar-label">// Detalles técnicos</p>
+        <div class="sidebar-list">
+          <!-- ============================================================
+               EDITA AQUÍ: lista de especificaciones técnicas
+               ============================================================ -->
+          <div class="sidebar-item">
+            <span class="sidebar-item-label">Microcontrolador</span>
+            <span class="sidebar-item-value">Arduino UNO R3</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="sidebar-item-label">Módulo RFID</span>
+            <span class="sidebar-item-value">MFRC522 13.56 MHz</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="sidebar-item-label">Actuador</span>
+            <span class="sidebar-item-value">Servomotor SG90</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="sidebar-item-label">Display</span>
+            <span class="sidebar-item-value">LCD 16×2 con I2C</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="sidebar-item-label">Alimentación</span>
+            <span class="sidebar-item-value">5V USB / 9V pila</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="sidebar-item-label">Lenguaje</span>
+            <span class="sidebar-item-value">C++ (Arduino IDE)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Descripción larga -->
+      <div class="details-content">
+        <!-- ============================================================
+             EDITA AQUÍ: título y descripción larga del proyecto
+             ============================================================ -->
+        <h2>El reto: construir un acceso seguro desde cero</h2>
+        <p>
+          El objetivo principal de este proyecto fue diseñar e implementar un sistema de control de acceso 
+          funcional utilizando únicamente componentes electrónicos básicos y una placa Arduino UNO. 
+          El sistema permite o deniega la entrada según la autenticación del usuario mediante tarjeta RFID.
+        </p>
+        <p>
+          El proceso comenzó con el diseño del esquema de conexiones en papel, seguido del montaje físico 
+          en protoboard. La programación se desarrolló de forma incremental: primero la lectura del módulo 
+          RFID, luego la lógica de comparación de UIDs, y finalmente la integración con el servomotor y el 
+          display LCD para dar feedback visual al usuario.
+        </p>
+        <p>
+          Uno de los mayores aprendizajes fue la gestión de la comunicación SPI entre el Arduino y el lector 
+          RFID, así como la calibración del servomotor para garantizar un ángulo de apertura preciso. 
+          El proyecto finalizó con éxito con una demo en clase donde el sistema reconocía tarjetas autorizadas 
+          y bloqueaba intentos con tarjetas no registradas.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <p class="footer-name">Alexander Terziev Salazar</p>
+      <p class="footer-sub">CFGM SMX · Barcelona · 2025</p>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    function openLightbox(el) {
+      const img = el.querySelector('img');
+      if (!img) return; // no abre si es placeholder
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(e) {
+      if (e && e.target !== document.getElementById('lightbox') && !e.target.classList.contains('lightbox-close')) return;
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        document.getElementById('lightbox').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Proyecto — Alexander Terziev Salazar</title>
+  <title>Sistema de Entrada — Alexander Terziev Salazar</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
@@ -23,11 +23,10 @@
     }
 
     html { scroll-behavior: smooth; }
-
     body {
       font-family: var(--font-body);
-      background: var(--white);
-      color: var(--black);
+      background: var(--black);
+      color: var(--white);
       overflow-x: hidden;
     }
 
@@ -36,8 +35,9 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 200;
-      background: var(--black);
-      padding: 0.9rem 0;
+      /* transparente sobre el video hero */
+      background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 100%);
+      padding: 1rem 0;
     }
 
     .nav-inner {
@@ -51,12 +51,11 @@
 
     .nav-logo {
       width: 36px; height: 36px;
-      border: 1.5px solid var(--white);
+      border: 1.5px solid rgba(255,255,255,0.6);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       text-decoration: none;
     }
-
     .nav-logo span {
       font-family: var(--font-mono);
       font-size: 9px; font-weight: 500;
@@ -66,7 +65,7 @@
     .nav-back {
       font-family: var(--font-mono);
       font-size: 11px;
-      color: rgba(255,255,255,0.5);
+      color: rgba(255,255,255,0.55);
       text-decoration: none;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -79,79 +78,253 @@
     .nav-index {
       font-family: var(--font-mono);
       font-size: 11px;
-      color: rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.25);
       letter-spacing: 0.08em;
     }
 
-    /* ===== HERO CABECERA ===== */
-    .proj-header {
-      padding-top: 80px;
-      background: var(--black);
-      color: var(--white);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 52vh;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+    /* ===================================================
+       HERO — VIDEO FÍSICO A PANTALLA COMPLETA
+    =================================================== */
+    .video-hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      background: #000;
     }
 
-    .proj-header-left {
-      padding: 4rem 2.5rem 4rem;
-      max-width: 600px;
-      margin-left: auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      gap: 1.4rem;
-      animation: fadeUp 0.6s ease both 0.1s;
+    .video-hero video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
-    .proj-header-right {
-      padding: 4rem 2.5rem 4rem;
+    /* Degradado inferior para que el texto sea legible */
+    .video-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.15) 0%,
+        transparent 30%,
+        transparent 50%,
+        rgba(0,0,0,0.75) 85%,
+        rgba(0,0,0,0.95) 100%
+      );
+    }
+
+    /* Contenido encima del video */
+    .video-hero-content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 3.5rem 2.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
       display: flex;
-      flex-direction: column;
+      align-items: flex-end;
       justify-content: space-between;
-      animation: fadeUp 0.6s ease both 0.25s;
-      border-left: 1px solid rgba(255,255,255,0.08);
+      gap: 2rem;
     }
 
-    .proj-kicker {
+    .video-hero-left {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      animation: fadeUp 0.7s ease both 0.15s;
+    }
+
+    .hero-kicker {
       font-family: var(--font-mono);
       font-size: 11px;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--accent);
     }
 
-    .proj-title {
+    .hero-title {
       font-family: var(--font-display);
-      font-size: clamp(56px, 7vw, 100px);
-      line-height: 0.88;
+      font-size: clamp(64px, 9vw, 130px);
+      line-height: 0.86;
       letter-spacing: 0.02em;
       color: var(--white);
     }
 
-    .proj-subtitle {
+    .hero-subtitle {
       font-family: var(--font-serif);
       font-style: italic;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       color: rgba(255,255,255,0.5);
-      line-height: 1.4;
     }
 
-    .proj-desc-full {
-      font-size: 14px;
+    .video-hero-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 1rem;
+      animation: fadeUp 0.7s ease both 0.3s;
+      flex-shrink: 0;
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: flex-end;
+    }
+
+    .tech-tag {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 2px;
+      color: rgba(255,255,255,0.6);
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(4px);
+    }
+
+    .hero-meta-row {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-end;
+    }
+
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+    }
+
+    .hero-stat-num {
+      font-family: var(--font-display);
+      font-size: 38px;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .hero-stat-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* Badge "Video físico" en esquina superior derecha del hero */
+    .video-badge-live {
+      position: absolute;
+      top: 5rem; right: 2.5rem;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--accent);
+      padding: 6px 16px;
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      animation: fadeUp 0.5s ease both 0.4s;
+    }
+
+    .live-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #fff;
+      animation: blink 1.5s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* Scroll hint */
+    .scroll-hint {
+      position: absolute;
+      bottom: 1.8rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      animation: fadeUp 1s ease both 0.8s;
+    }
+
+    .scroll-hint span {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+    }
+
+    .scroll-arrow {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+      animation: scrollPulse 2s ease infinite;
+    }
+
+    @keyframes scrollPulse {
+      0% { transform: scaleY(0); transform-origin: top; opacity: 1; }
+      100% { transform: scaleY(1); transform-origin: top; opacity: 0; }
+    }
+
+    /* ===================================================
+       DESCRIPCIÓN DEL PROYECTO
+    =================================================== */
+    .proj-info {
+      background: var(--black);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 5rem 0;
+    }
+
+    .proj-info-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .info-left { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+    }
+
+    .info-desc {
+      font-size: 15px;
       font-weight: 300;
-      line-height: 1.8;
-      color: rgba(255,255,255,0.65);
-      max-width: 420px;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.55);
     }
 
-    /* Meta info right */
-    .proj-meta-top {
+    .info-right {
       display: flex;
       flex-direction: column;
       gap: 2rem;
-      padding-top: 1rem;
+      padding-top: 0.5rem;
+    }
+
+    .meta-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
     }
 
     .meta-block { display: flex; flex-direction: column; gap: 0.4rem; }
@@ -161,279 +334,114 @@
       font-size: 10px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.2);
     }
 
     .meta-value {
       font-family: var(--font-body);
       font-size: 14px;
       font-weight: 400;
-      color: rgba(255,255,255,0.8);
+      color: rgba(255,255,255,0.75);
     }
 
-    .tech-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 0.2rem;
-    }
-
-    .tech-tag {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 5px 12px;
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 2px;
-      color: rgba(255,255,255,0.6);
-      background: transparent;
-      transition: all 0.2s;
-    }
-    .tech-tag:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    .proj-meta-bottom {
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 1.5rem;
-      display: flex;
-      gap: 2.5rem;
-    }
-
-    .stat-item { display: flex; flex-direction: column; gap: 0.2rem; }
-
-    .stat-num {
-      font-family: var(--font-display);
-      font-size: 40px;
-      color: var(--accent);
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      color: rgba(255,255,255,0.3);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    /* ===== GALERÍA PRINCIPAL ===== */
-    .gallery-section {
-      padding: 0;
-      background: var(--black);
-    }
-
-    /* Imagen hero grande */
-    .gallery-hero {
-      width: 100%;
-      height: 70vh;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-    }
-
-    .gallery-hero-inner {
-      width: 100%;
-      height: 100%;
-      /* 
-        ============================================================
-        FOTO / VIDEO PRINCIPAL
-        Reemplaza el background-image con tu imagen:
-          background-image: url('tu-foto.jpg');
-        O si prefieres video, descomenta el <video> dentro del HTML.
-        ============================================================
-      */
-      background: linear-gradient(135deg, #1a1a2e 0%, #e94560 100%);
-      background-size: cover;
-      background-position: center;
-      transition: transform 0.6s ease;
-    }
-
-    .gallery-hero:hover .gallery-hero-inner { transform: scale(1.02); }
-
-    .gallery-hero-label {
-      position: absolute;
-      bottom: 2rem; left: 2rem;
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-      background: rgba(0,0,0,0.6);
-      padding: 6px 14px;
-      border-radius: 2px;
-      backdrop-filter: blur(4px);
-    }
-
-    .gallery-hero-num {
-      position: absolute;
-      top: 2rem; right: 2rem;
-      font-family: var(--font-display);
-      font-size: 80px;
-      color: rgba(255,255,255,0.06);
-      line-height: 1;
-      pointer-events: none;
-      user-select: none;
-    }
-
-    /* Expand icon */
-    .expand-icon {
-      position: absolute;
-      bottom: 2rem; right: 2rem;
-      width: 44px; height: 44px;
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px;
-      color: rgba(255,255,255,0.6);
-      transition: all 0.2s;
-      backdrop-filter: blur(4px);
-      background: rgba(0,0,0,0.3);
-    }
-    .gallery-hero:hover .expand-icon {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    /* ===== GRID DE MEDIOS ===== */
-    .media-section {
+    /* ===================================================
+       SECCIÓN VÍDEOS SECUNDARIOS
+    =================================================== */
+    .secondary-section {
+      background: #050505;
+      border-top: 1px solid rgba(255,255,255,0.05);
       padding: 4rem 0;
-      background: var(--black);
-      border-top: 1px solid rgba(255,255,255,0.06);
     }
 
-    .media-section-inner {
+    .secondary-inner {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 2.5rem;
     }
 
-    .media-section-header {
+    .secondary-header {
       display: flex;
       align-items: baseline;
       justify-content: space-between;
       margin-bottom: 2rem;
     }
 
-    .media-label {
+    .secondary-count {
       font-family: var(--font-mono);
       font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.12);
     }
 
-    .media-count {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: rgba(255,255,255,0.15);
-    }
-
-    /* Grid de 3 columnas con variación de tamaños */
-    .media-grid {
+    .secondary-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 8px;
     }
 
-    .media-item {
+    .sec-video-wrap {
       position: relative;
       overflow: hidden;
-      cursor: pointer;
       border-radius: 3px;
+      background: #111;
+      cursor: pointer;
     }
 
-    .media-item--tall { grid-row: span 2; }
-    .media-item--wide { grid-column: span 2; }
-
-    .media-thumb {
+    .sec-video-wrap video {
       width: 100%;
-      height: 220px;
+      height: 300px;
       object-fit: cover;
       display: block;
       transition: transform 0.5s ease;
-    }
-
-    .media-item--tall .media-thumb { height: 100%; min-height: 448px; }
-    .media-item--wide .media-thumb { height: 220px; }
-
-    /* Placeholder cuando no hay imagen real */
-    .media-placeholder {
-      width: 100%;
-      height: 220px;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      transition: all 0.3s;
-      position: relative;
-      overflow: hidden;
     }
 
-    .media-item--tall .media-placeholder { height: 100%; min-height: 448px; }
-    .media-item--wide .media-placeholder { height: 220px; }
+    .sec-video-wrap:hover video { transform: scale(1.03); }
 
-    .media-placeholder::before {
-      content: '';
+    .sec-video-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 100%);
+      background: rgba(0,0,0,0);
+      transition: background 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    /* Colores de placeholder variados */
-    .ph-1  { background: #111216; border: 1px dashed rgba(255,255,255,0.08); }
-    .ph-2  { background: #12100e; border: 1px dashed rgba(255,255,255,0.08); }
-    .ph-3  { background: #0e1115; border: 1px dashed rgba(255,255,255,0.08); }
-    .ph-4  { background: #111210; border: 1px dashed rgba(255,255,255,0.08); }
-    .ph-5  { background: #100e12; border: 1px dashed rgba(255,255,255,0.08); }
+    .sec-video-wrap:hover .sec-video-overlay { background: rgba(232,55,10,0.08); }
 
-    .media-placeholder-icon {
-      font-size: 32px;
-      opacity: 0.2;
+    .sec-play-btn {
+      width: 54px; height: 54px;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      color: rgba(255,255,255,0.5);
+      opacity: 0;
+      transform: scale(0.85);
+      transition: all 0.3s;
+      backdrop-filter: blur(4px);
+      background: rgba(0,0,0,0.3);
     }
 
-    .media-placeholder-text {
+    .sec-video-wrap:hover .sec-play-btn { opacity: 1; transform: scale(1); }
+
+    .sec-video-label {
+      position: absolute;
+      bottom: 14px; left: 14px;
       font-family: var(--font-mono);
       font-size: 9px;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.18);
-      text-align: center;
-      line-height: 1.6;
+      color: rgba(255,255,255,0.45);
+      background: rgba(0,0,0,0.55);
+      padding: 5px 12px;
+      border-radius: 2px;
+      backdrop-filter: blur(4px);
     }
 
-    .media-item:hover .media-placeholder {
-      border-color: rgba(232,55,10,0.3);
-    }
-    .media-item:hover .media-placeholder-icon { opacity: 0.4; }
-
-    /* Overlay hover */
-    .media-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(232, 55, 10, 0.0);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.3s;
-    }
-
-    .media-item:hover .media-overlay { background: rgba(232, 55, 10, 0.08); }
-
-    .media-overlay-icon {
-      font-size: 24px;
-      color: white;
-      opacity: 0;
-      transform: scale(0.8);
-      transition: all 0.3s;
-    }
-    .media-item:hover .media-overlay-icon { opacity: 0.8; transform: scale(1); }
-
-    /* Badge tipo (foto / video) */
-    .media-badge {
+    
+    
+    .sec-video-badge {
       position: absolute;
       top: 12px; left: 12px;
       font-family: var(--font-mono);
@@ -442,184 +450,53 @@
       text-transform: uppercase;
       padding: 4px 10px;
       border-radius: 2px;
-      color: rgba(255,255,255,0.7);
+      background: rgba(232,55,10,0.75);
+      color: rgba(255,255,255,0.9);
     }
-    .media-badge--photo { background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); }
-    .media-badge--video { background: rgba(232,55,10,0.7); border: 1px solid rgba(232,55,10,0.4); }
 
-    /* ===== SECCIÓN VIDEO EMBED ===== */
+
+    /* ===== VÍDEO FÍSICO FINAL ===== */
     .video-section {
+      background: var(--black);
+      border-top: 1px solid rgba(255,255,255,0.05);
       padding: 4rem 0;
-      background: #050505;
-      border-top: 1px solid rgba(255,255,255,0.04);
     }
 
     .video-section-inner {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 2.5rem;
-    }
-
-    .video-section-header {
-      margin-bottom: 2rem;
-    }
-
-    .video-wrap {
-      position: relative;
-      width: 100%;
-      padding-bottom: 56.25%; /* 16:9 */
-      background: #111;
-      border-radius: 4px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .video-wrap iframe,
-    .video-wrap video {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      border: none;
-    }
-
-    /* Placeholder para cuando no hay video */
-    .video-placeholder {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 16px;
+      gap: 1.5rem;
     }
 
-    .video-play-btn {
-      width: 72px; height: 72px;
-      border: 2px solid rgba(255,255,255,0.15);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 26px;
-      color: rgba(255,255,255,0.3);
+    .video-section-label {
+      width: 100%;
+      max-width: 900px;
     }
 
-    .video-placeholder-text {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.15);
-      text-align: center;
-      line-height: 1.8;
+    .video-wrap {
+      width: 100%;
+      max-width: 900px;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      border-radius: 4px;
+      overflow: hidden;
     }
 
-    /* ===== DESCRIPCIÓN LARGA ===== */
-    .details-section {
-      padding: 5rem 0;
-      background: var(--cream);
-      border-top: 1px solid var(--border);
-    }
-
-    .details-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2.5rem;
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 6rem;
-      align-items: start;
-    }
-
-    .details-sidebar { position: sticky; top: 100px; }
-
-    .details-sidebar-label {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gray);
-      margin-bottom: 2rem;
-    }
-
-    .sidebar-list { display: flex; flex-direction: column; gap: 1rem; }
-
-    .sidebar-item { display: flex; flex-direction: column; gap: 0.3rem; }
-
-    .sidebar-item-label {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #aaa;
-    }
-
-    .sidebar-item-value {
-      font-size: 14px;
-      font-weight: 400;
-      color: var(--black);
-    }
-
-    .details-content { display: flex; flex-direction: column; gap: 2rem; }
-
-    .details-content h2 {
-      font-family: var(--font-serif);
-      font-size: 2rem;
-      font-weight: 400;
-      color: var(--black);
-      line-height: 1.25;
-    }
-
-    .details-content p {
-      font-size: 15px;
-      font-weight: 300;
-      line-height: 1.85;
-      color: #444;
-      /* 
-        ============================================================
-        TEXTO DEL PROYECTO
-        Edita este texto con la descripción de tu proyecto.
-        ============================================================
-      */
-    }
-
-    .details-content p + p { margin-top: 1rem; }
-
-    /* ===== LIGHTBOX ===== */
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      z-index: 999;
-      background: rgba(0,0,0,0.96);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-    }
-
-    .lightbox.active { display: flex; }
-
-    .lightbox-close {
-      position: absolute;
-      top: 1.5rem; right: 2rem;
-      font-size: 28px;
-      color: rgba(255,255,255,0.4);
-      cursor: pointer;
-      background: none; border: none;
-      font-family: var(--font-body);
-      transition: color 0.2s;
-      line-height: 1;
-    }
-    .lightbox-close:hover { color: var(--white); }
-
-    .lightbox-img {
-      max-width: 90vw;
-      max-height: 85vh;
+    .video-wrap video {
+      width: 100%;
+      height: 100%;
       object-fit: contain;
-      border-radius: 3px;
+      display: block;
     }
 
     /* ===== FOOTER ===== */
     footer {
       background: var(--black);
+      border-top: 1px solid rgba(255,255,255,0.05);
       padding: 3rem 0;
     }
 
@@ -642,194 +519,186 @@
     .footer-sub {
       font-family: var(--font-mono);
       font-size: 11px;
-      color: rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.2);
       letter-spacing: 0.08em;
     }
 
     /* ===== ANIMACIONES ===== */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
+      from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 900px) {
-      .proj-header {
-        grid-template-columns: 1fr;
-      }
-      .proj-header-left { max-width: 100%; margin: 0; padding: 3rem 1.5rem 2rem; }
-      .proj-header-right { border-left: none; border-top: 1px solid rgba(255,255,255,0.08); padding: 2rem 1.5rem; }
-      .media-grid { grid-template-columns: repeat(2, 1fr); }
-      .media-item--wide { grid-column: span 2; }
-      .details-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-      .details-sidebar { position: static; }
+      .video-hero-content { flex-direction: column; align-items: flex-start; padding: 2.5rem 1.5rem; }
+      .video-hero-right { align-items: flex-start; }
+      .tech-tags { justify-content: flex-start; }
+      .proj-info-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .secondary-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 600px) {
-      .proj-title { font-size: clamp(48px, 12vw, 80px); }
-      .media-grid { grid-template-columns: 1fr; }
-      .media-item--tall, .media-item--wide { grid-column: span 1; grid-row: span 1; }
-      .media-item--tall .media-placeholder { min-height: 260px; }
+      .hero-title { font-size: clamp(52px, 14vw, 80px); }
       .footer-inner { flex-direction: column; gap: 0.5rem; text-align: center; }
+      .meta-row { grid-template-columns: 1fr; gap: 1.2rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAVBAR -->
+  <!-- NAVBAR — transparente sobre el hero -->
   <nav>
     <div class="nav-inner">
       <a href="index.html" class="nav-logo"><span>AYTS</span></a>
       <a href="index.html#proyectos" class="nav-back">Volver a proyectos</a>
+      <span class="nav-index">01 / 07</span>
     </div>
   </nav>
 
-  <!-- CABECERA DEL PROYECTO -->
-  <header class="proj-header">
+  <!-- ================================================
+       HERO: VIDEO FÍSICO A PANTALLA COMPLETA
+  ================================================ -->
+  <section class="video-hero">
 
-    <div class="proj-header-left">
-      <!-- ============================================================
-           EDITA AQUÍ: kicker, título y subtítulo del proyecto
-           ============================================================ -->
-      <p class="proj-kicker">// Hardware · Arduino</p>
-      <h1 class="proj-title">Sistema de Entrada</h1>
-      <p class="proj-subtitle">Control de acceso físico desde cero</p>
-      <p class="proj-desc-full">
-        Control de acceso físico montado y programado íntegramente desde cero con Arduino. 
-        El sistema integra leds, teclado on/off y servomotor para 
-        la apertura de puerta.
-      </p>
+
+    <div class="video-hero-overlay"></div>
+
+    <!-- Badge "Video físico" -->
+    <div class="video-badge-live">
+      <span class="live-dot"></span>
+      Video físico
     </div>
 
-    <div class="proj-header-right">
-      <div class="proj-meta-top">
-        <!-- ============================================================
-             EDITA AQUÍ: tecnologías, año, tipo
-             ============================================================ -->
-        <div class="meta-block">
-          <span class="meta-label">Tecnologías</span>
-          <div class="tech-tags">
-            <span class="tech-tag">Arduino UNO</span>
-            <span class="tech-tag">C++</span>
-            <span class="tech-tag">Servo</span>
+    <!-- Título + meta sobre el video -->
+    <div class="video-hero-content">
+      <div class="video-hero-left">
+        <p class="hero-kicker">// Hardware · Arduino</p>
+        <h1 class="hero-title">Sistema<br>de Entrada</h1>
+        <p class="hero-subtitle">Control de acceso físico desde cero</p>
+      </div>
+
+      <div class="video-hero-right">
+        <div class="tech-tags">
+          <span class="tech-tag">Arduino UNO</span>
+          <span class="tech-tag">C++</span>
+          <span class="tech-tag">Servo</span>
+          <span class="tech-tag">LEDs</span>
+        </div>
+        <div class="hero-meta-row">
+          <div class="hero-stat">
+            <span class="hero-stat-num">1</span>
+            <span class="hero-stat-label">Semana</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">2</span>
+            <span class="hero-stat-label">Prototipos</span>
           </div>
         </div>
-
-        <div class="meta-block">
-          <span class="meta-label">Año</span>
-          <span class="meta-value">2024 — 2025</span>
-        </div>
-
-        <div class="meta-block">
-          <span class="meta-label">Tipo</span>
-          <span class="meta-value">Proyecto de aula — CFGM SMX</span>
-        </div>
-
-        <div class="meta-block">
-          <span class="meta-label">Rol</span>
-          <span class="meta-value">Diseño, montaje y programación</span>
-        </div>
-      </div>
-
-      <div class="proj-meta-bottom">
-        <!-- ============================================================
-             EDITA AQUÍ: estadísticas del proyecto
-             ============================================================ -->
-        <div class="stat-item">
-          <span class="stat-num">1</span>
-          <span class="stat-label">Semana</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-num">2</span>
-          <span class="stat-label">Prototipos</span>
-        </div>
       </div>
     </div>
 
-  </header>
-
-  <!-- IMAGEN HERO GRANDE -->
-  <section class="gallery-section">
-    <div class="gallery-hero" onclick="openLightbox(this)">
-      <div class="gallery-hero-inner"
-           style="
-             /* ============================================================
-                FOTO PRINCIPAL DEL PROYECTO — IMAGEN GRANDE
-                Descomenta la línea siguiente y pon la ruta de tu imagen:
-                background-image: url('fotos/proyecto-portada.jpg');
-                background-size: cover;
-                background-position: center;
-                ============================================================ */
-           ">
-      </div>
-
-      <!-- Si prefieres VIDEO en lugar de imagen, descomenta esto:-->
-      <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
-        <source src="videos/ArduinoSimulación1.1.mp4" type="video/mp4">
-      </video>
-      <!---->
-
-      <span class="gallery-hero-num">01</span>
-      <span class="gallery-hero-label">Vista general del proyecto</span>
+    <!-- Scroll hint -->
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
     </div>
   </section>
 
-  <!-- GRID DE FOTOS Y VIDEOS -->
-  <section class="media-section">
-    <div class="media-section-inner">
-      <div class="media-section-header">
-        <span class="media-label">// Galería de medios</span>
-        <span class="media-count">3 archivos</span>
+  <!-- ================================================
+       DESCRIPCIÓN DEL PROYECTO
+  ================================================ -->
+  <section class="proj-info">
+    <div class="proj-info-inner">
+
+      <div class="info-left">
+        <p class="section-label">// Sobre el proyecto</p>
+        <p class="info-desc">
+          Control de acceso físico montado y programado íntegramente desde cero con Arduino.
+          El sistema integra LEDs de estado, un teclado on/off y un servomotor para la apertura
+          automática de la puerta cuando la contraseña es correcta.
+        </p>
+        <p class="info-desc">
+          El proyecto se desarrolló en dos fases: primero una simulación digital para validar
+          la lógica del circuito, y después el montaje físico real con todos los componentes soldados
+          y cableados a mano.
+        </p>
       </div>
 
-      <div class="media-grid">
+      <div class="info-right">
+        <div class="meta-row">
+          <div class="meta-block">
+            <span class="meta-label">Año</span>
+            <span class="meta-value">2024 — 2025</span>
+          </div>
+          <div class="meta-block">
+            <span class="meta-label">Tipo</span>
+            <span class="meta-value">Proyecto de aula</span>
+          </div>
+          <div class="meta-block">
+            <span class="meta-label">Centro</span>
+            <span class="meta-value">CFGM SMX</span>
+          </div>
+          <div class="meta-block">
+            <span class="meta-label">Rol</span>
+            <span class="meta-value">Diseño, montaje y programación</span>
+          </div>
+        </div>
+      </div>
 
-        <!-- ITEM 3 — VIDEO -->
-        <div class="media-item">
-  
-            <video class="media-thumb" autoplay muted loop playsinline src="videos/Arduino_Fisico.mp4"></video>
-          
-          <span class="media-badge media-badge--video">Video</span>
-        </div>
-        
-        <!-- ITEM 3 — VIDEO -->
-        <div class="media-item">
-  
-            <video class="media-thumb" autoplay muted loop playsinline src="videos/ArduinoSimulacion1.0.mp4"></video>
-          
-          <span class="media-badge media-badge--video">Video</span>
-        </div>
-        
-        <!-- ITEM 3 — VIDEO -->
-        <div class="media-item">
-  
-            <video class="media-thumb" autoplay muted loop playsinline src="videos/ArduinoSimulación1.1.mp4"></video>
-          
-          <span class="media-badge media-badge--video">Video</span>
+    </div>
+  </section>
+
+  <!-- ================================================
+       VÍDEOS SECUNDARIOS (simulaciones)
+  ================================================ -->
+  <section class="secondary-section">
+    <div class="secondary-inner">
+      <div class="secondary-header">
+        <span class="section-label">// Simulaciones digitales</span>
+        <span class="secondary-count">2 vídeos</span>
+      </div>
+
+      <div class="secondary-grid">
+
+        <div class="sec-video-wrap">
+          <video autoplay muted loop playsinline>
+            <source src="videos/ArduinoSdeSimulcación1.mp4" type="video/mp4">
+          </video>
+          <div class="sec-video-overlay">
+            <div class="sec-play-btn">▶</div>
+          </div>
+          <span class="sec-video-badge">Simulación</span>
+          <span class="sec-video-label">Simulación 1 — Lógica del circuito</span>
         </div>
 
+        <div class="sec-video-wrap">
+          <video autoplay muted loop playsinline>
+            <source src="videos/ArduinoSdeSimulcación2.mp4" type="video/mp4">
+          </video>
+          <div class="sec-video-overlay">
+            <div class="sec-play-btn">▶</div>
+          </div>
+          <span class="sec-video-badge">Simulación</span>
+          <span class="sec-video-label">Simulación 2 — Prueba de acceso</span>
+        </div>
 
       </div>
     </div>
   </section>
 
-  <!-- SECCIÓN VIDEO EMBED (YouTube / video local) -->
   <section class="video-section">
     <div class="video-section-inner">
-      <div class="video-section-header">
-        <span class="media-label" style="color:rgba(255,255,255,0.25);">// Video de demostración</span>
+      <div class="video-section-label">
+        <span class="section-label">// Vídeo físico</span>
       </div>
-
       <div class="video-wrap">
-        
-          OPCIÓN B — Video local:
-          <video controls >
-            <source src="videos/Arduino_Fisico.mp4" type="video/mp4">
-          </video>
-        
+        <video controls>
+          <source src="videos/ArduinoSdeFisico.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
-
+  </section>
 
   <!-- FOOTER -->
   <footer>
@@ -838,35 +707,6 @@
       <p class="footer-sub">CFGM SMX · Barcelona · 2025</p>
     </div>
   </footer>
-
-  <!-- LIGHTBOX -->
-  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-    <img class="lightbox-img" id="lightbox-img" src="" alt="">
-  </div>
-
-  <script>
-    function openLightbox(el) {
-      const img = el.querySelector('img');
-      if (!img) return; // no abre si es placeholder
-      document.getElementById('lightbox-img').src = img.src;
-      document.getElementById('lightbox').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeLightbox(e) {
-      if (e && e.target !== document.getElementById('lightbox') && !e.target.classList.contains('lightbox-close')) return;
-      document.getElementById('lightbox').classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') {
-        document.getElementById('lightbox').classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    });
-  </script>
 
 </body>
 </html>
